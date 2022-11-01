@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>let us trace your location</h1>
+    <button onclick="getLoaction()">Get Location</button>
+    <div id="output"></div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script>
+        var x=document.getElementById("output");
+        function getLoaction(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+            else{
+                x.innerHTML="not supporting"
+            }
+        }
+        function showPosition(position){
+            // x.innerHTML="Latitude"+position.coords.latitude;
+            // x.innerHTML+="<br />";
+            // x.innerHTML+="Longitude"+position.coords.longitude;
+            // var locAPI="https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true"+"&key=AIzaSyCZUtxH5Z1kD2zFuh57uo9nz9v7XTEztcU";
+            var locAPI="https://api.opencagedata.com/geocode/v1/json?q="+position.coords.latitude+","+position.coords.longitude+"&key=6459d4e3eca549959e41122b603bdf5d";
+            
+            $.get({
+                url:locAPI,
+                success:function(data){
+                    x.innerHTML=data.results[0].components.city
+                }
+            })
+        }
+    </script>
+</body>
+</html>

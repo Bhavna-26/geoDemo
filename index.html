@@ -22,7 +22,7 @@
             }
         }
         function showPosition(position){
-             x.innerHTML="Latitude"+position.coords.latitude;
+           //  x.innerHTML="Latitude"+position.coords.latitude;
             // x.innerHTML+="<br />";
             // x.innerHTML+="Longitude"+position.coords.longitude;
             // var locAPI="https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+","+position.coords.longitude+"&sensor=true"+"&key=AIzaSyCZUtxH5Z1kD2zFuh57uo9nz9v7XTEztcU";
@@ -31,7 +31,7 @@
             $.get({
                 url:locAPI,
                 success:function(data){
-                 //   x.innerHTML=data.results[0].components.city
+                    x.innerHTML="success"
                 }
             })
         }
